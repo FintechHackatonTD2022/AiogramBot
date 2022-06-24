@@ -8,8 +8,10 @@ from PIL import Image, ImageDraw, ImageFont
 FONT_COLOR = (255, 255, 255)
 
 
-def draw_card(template_card: Image, font_path: str, card_16number: int,
+def draw_card(card_16number: int,
               card_expiry: str, card_holder: str, card_cvv: int):
+    template_card = Image.open(r'src/assets/card.png')
+    font_path = 'src/assets/kredit.ttf'
     card = ImageDraw.Draw(template_card)
     font_16number = ImageFont.truetype(font_path, 107)
     font_other = ImageFont.truetype(font_path, 65)

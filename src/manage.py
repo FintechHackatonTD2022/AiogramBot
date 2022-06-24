@@ -6,6 +6,7 @@ from utils.commands import DefaultCommands
 
 default_commands = {
     'list': 'list of possible bot commands',
+    'get_card': 'получить карту',
 }
 
 tasks_on_startup = [
