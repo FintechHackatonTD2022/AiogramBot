@@ -12,7 +12,7 @@ from bot_config import bot
 data = {}
 
 
-async def init(message: aiogram.types.Message):
+async def generate_card(message: aiogram.types.Message):
     await message.answer('Вы пытаетесь получить виртуальную карту')
     await message.answer('Для ее получения нам необходимо узнать о вас некоторою информацию')
     await message.answer('Напишите боту ваш ИИН')
