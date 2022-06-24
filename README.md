@@ -1,6 +1,6 @@
-# AiogramBot
+![gimmetelegram-bot](/repo/header.png?raw=true "gimmetelegram-bot")
 
-Aiogram bot for Case #3 of [Fintech Hackathon, hosted in Terricon Valley](https://terricon.kz/ru/hackathon)  
+**gimmetelegram-bot** is a Telegram bot made for Case #3 of [Fintech Hackathon, hosted in Terricon Valley](https://terricon.kz/ru/hackathon)  
 Used as a demonstrative UI/front-endish application
 
 ## Installation
