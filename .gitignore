@@ -4,7 +4,6 @@
 .idea
 venv
 *.ipynb
-.vscode
 .pytest_cache
 log.txt
 **/*.sqlite
