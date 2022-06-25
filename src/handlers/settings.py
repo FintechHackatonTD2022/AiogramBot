@@ -25,7 +25,7 @@ _ = i18n.gettext
 
 async def change_locale(message: aiogram.types.Message):
     await message.answer('Начал менять язык')
-    i18n.ctx_locale.set('ru')
+    i18n.ctx_locale.set('en')
     await message.answer('Закончил менять язык')
 # @bot.dp.message_handler(
 #     commands=["settings"],
