@@ -17,13 +17,11 @@ load_dotenv()
 
 # VARS
 BOT_TOKEN = os.getenv('BOT_TOKEN')
-NOTION_API_TOKEN = os.getenv('NOTION_API_TOKEN')
-DB_URL = os.getenv('DB_URL')
+BACKEND_URL = os.getenv('BACKEND_URL')
 
 # Log info vars
 logger.info('BOT_TOKEN = ' + BOT_TOKEN)
-logger.info('NOTION_API_TOKEN = ' + NOTION_API_TOKEN)
-logger.info('DB_URL = ' + DB_URL)
+logger.info('BACKEND_URL = ' + BACKEND_URL)
 
 # main objects
 bot = Bot(BOT_TOKEN)
