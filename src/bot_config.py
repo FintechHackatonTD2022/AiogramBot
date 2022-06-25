@@ -26,11 +26,9 @@ logger.info('BOT_TOKEN = ' + BOT_TOKEN)
 #logger.info('NOTION_API_TOKEN = ' + NOTION_API_TOKEN)
 #logger.info('DB_URL = ' + DB_URL)
 
-locales_dir = 'src/locales'
 
 # main objects
 bot = Bot(BOT_TOKEN)
-i18n = I18nMiddleware("bot", locales_dir, default="en")
 
 # SINGLETON
 schedule = Schedule()

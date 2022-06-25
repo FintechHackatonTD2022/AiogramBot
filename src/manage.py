@@ -1,4 +1,5 @@
 from bot_config import admins, bot, schedule
+import middlewares
 import handlers
 from handlers.help import list_of_commands
 from utils.notify import notify_admins

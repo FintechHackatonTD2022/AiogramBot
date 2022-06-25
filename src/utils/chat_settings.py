@@ -5,9 +5,7 @@ from aiogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 from aiogram.utils.callback_data import CallbackData
 from aiogram.utils.markdown import hbold
 
-from aiogram_bot.misc import i18n
-from aiogram_bot.models.chat import Chat
-from aiogram_bot.models.user import User
+from misc import i18n
 
 cb_chat_settings = CallbackData("chat", "id", "property", "value")
 cb_user_settings = CallbackData("user", "property", "value")
@@ -26,7 +24,8 @@ def get_chat_settings_markup(
     telegram_chat: types.Chat, chat: Chat
 ) -> Tuple[str, InlineKeyboardMarkup]:
     return (
-        _("Settings for chat {chat_title}").format(chat_title=hbold(telegram_chat.title)),
+        _("Settings for chat {chat_title}").format(
+            chat_title=hbold(telegram_chat.title)),
         InlineKeyboardMarkup(
             inline_keyboard=[
                 [
@@ -62,7 +61,8 @@ def get_chat_settings_markup(
                 [
                     InlineKeyboardButton(
                         text=_("{flag} Language").format(
-                            flag=i18n.AVAILABLE_LANGUAGES[i18n.ctx_locale.get()].flag
+                            flag=i18n.AVAILABLE_LANGUAGES[i18n.ctx_locale.get(
+                            )].flag
                         ),
                         callback_data=cb_chat_settings.new(
                             id=chat.id, property=PROPERTY_LANGUAGE, value="change"
@@ -102,13 +102,15 @@ def get_user_settings_markup(chat: Chat, user: User) -> Tuple[str, InlineKeyboar
                         text=_("{flag} Language").format(
                             flag=i18n.AVAILABLE_LANGUAGES[chat.language].flag
                         ),
-                        callback_data=cb_user_settings.new(property="language", value="change"),
+                        callback_data=cb_user_settings.new(
+                            property="language", value="change"),
                     )
                 ],
                 [
                     InlineKeyboardButton(
                         text=_("Done"),
-                        callback_data=cb_user_settings.new(property="done", value="true"),
+                        callback_data=cb_user_settings.new(
+                            property="done", value="true"),
                     )
                 ],
             ]
