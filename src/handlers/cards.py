@@ -1,9 +1,11 @@
 from io import BytesIO
+import io
 import aiogram
 from aiogram.dispatcher import FSMContext
 from aiogram.dispatcher.filters.state import State, StatesGroup
 from aiogram.utils.markdown import hspoiler
 from aiogram.types import ReplyKeyboardMarkup, KeyboardButton, ReplyKeyboardRemove
+from aiogram.types.input_file import InputFile
 
 from services.draw_card.draw_card import draw_card
 from bot_config import bot
@@ -42,9 +44,10 @@ async def send_card(message: aiogram.types.Message, state: FSMContext):
     card = draw_card(1234567890991337,
                      "13/37", "DOOM SLAYER", 228)
     await message.answer('Вот твоя карта', reply_markup=ReplyKeyboardRemove())
-    # card_bytes = BytesIO(card.tobytes())
-    # print(card_bytes.getvalue())
-    card.save('./photo.png', format='png')
+    card_bytes_io = BytesIO()
+    card.save(card_bytes_io, format='PNG')
+    card_bytes_io = BytesIO(card_bytes_io.getvalue())
     cvv = hspoiler('228')
     caption = f'CVV: {cvv}'
-    await message.answer_photo(open('./photo.png', 'rb'), caption=caption)
+    img = InputFile(card_bytes_io, 'photo.png')
+    await message.answer_photo(img, caption=caption)
