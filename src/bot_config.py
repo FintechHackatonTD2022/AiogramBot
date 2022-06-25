@@ -6,6 +6,7 @@ from dotenv import load_dotenv
 
 from lib.bot import Bot
 from services.schedule import Schedule
+from middlewares.i18n import I18nMiddleware
 
 # logger configuration
 # logging.config.fileConfig('logging.conf')
@@ -22,11 +23,14 @@ DB_URL = os.getenv('DB_URL')
 
 # Log info vars
 logger.info('BOT_TOKEN = ' + BOT_TOKEN)
-logger.info('NOTION_API_TOKEN = ' + NOTION_API_TOKEN)
-logger.info('DB_URL = ' + DB_URL)
+#logger.info('NOTION_API_TOKEN = ' + NOTION_API_TOKEN)
+#logger.info('DB_URL = ' + DB_URL)
+
+locales_dir = 'src/locales'
 
 # main objects
 bot = Bot(BOT_TOKEN)
+i18n = I18nMiddleware("bot", locales_dir, default="en")
 
 # SINGLETON
 schedule = Schedule()
