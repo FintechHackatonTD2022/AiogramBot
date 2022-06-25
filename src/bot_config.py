@@ -5,7 +5,6 @@ import logging.config
 from dotenv import load_dotenv
 
 from lib.bot import Bot
-from services.schedule import Schedule
 
 # logger configuration
 # logging.config.fileConfig('logging.conf')
@@ -29,9 +28,6 @@ logger.info('BOT_PRIVATE_KEY_PATH =' + BACKEND_PUBLIC_KEY_PATH)
 
 # main objects
 bot = Bot(BOT_TOKEN)
-
-# SINGLETON
-schedule = Schedule()
 
 # config
 admins = [

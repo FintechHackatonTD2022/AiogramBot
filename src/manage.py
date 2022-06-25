@@ -1,4 +1,4 @@
-from bot_config import admins, bot, schedule
+from bot_config import admins, bot
 import handlers
 from handlers.help import list_of_commands
 from utils.notify import notify_admins
@@ -11,7 +11,6 @@ default_commands = {
 
 tasks_on_startup = [
     DefaultCommands.set(default_commands).on_startup,
-    schedule.on_startup,
 ]
 
 
