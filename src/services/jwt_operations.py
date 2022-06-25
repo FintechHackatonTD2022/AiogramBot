@@ -3,11 +3,11 @@ import jwt
 
 
 def read_key_from_file(path: str) -> str:
-    with open(path, "rb") as file:
+    with open(path, "r") as file:
         return file.read()
 
 
-def form_dictionary_createcard(currency: str, amount: str,
+def form_dictionary_createcard(currency: int, amount: str,
                                phone_number: str, inn: str) -> dict:
     return {
         "currency": currency,
@@ -31,8 +31,8 @@ def form_dictionary_getcard(phone_number: str) -> dict:
     }
 
 
-def encode_jws(payload: dict, signing_key: str, alg='RS256') -> str:
-    return jwt.encode(payload, signing_key, alg)
+def encode_jws(payload: dict, signing_key: str, algorithm='RS256') -> str:
+    return jwt.encode(payload, signing_key, algorithm)
 
 
 def decrypt_jws(jws: str, verifying_key: str) -> dict:
