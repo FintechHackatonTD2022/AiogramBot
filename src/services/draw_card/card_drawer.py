@@ -1,15 +1,14 @@
 from io import BytesIO
-from PIL import Image
+from PIL import Image, ImageDraw, ImageFont
 from aiogram.types.input_file import InputFile
-
-from . import draw_card
 
 
 class CardDrawer:
     __template_card = Image.open(r'src/assets/card.png')
     __font_path = 'src/assets/kredit.ttf'
+    __font_color = (255, 255, 255)
 
-    @classmethod
+    @ classmethod
     def draw_to_input_file(cls, card_16number: int,
                            card_expiry: str, card_holder: str) -> InputFile:
         image = cls.__draw_card(card_16number, card_expiry, card_holder)
@@ -18,8 +17,18 @@ class CardDrawer:
         image_bytes_io = BytesIO(image_bytes_io.getvalue())
         return InputFile(image_bytes_io, filename='card.png')
 
-    @classmethod
+    @ classmethod
     def __draw_card(cls, card_16number: int,
                     card_expiry: str, card_holder: str) -> Image:
-        return draw_card.draw_card(cls.__template_card, cls.__font_path,
-                                   card_16number, card_expiry, card_holder)
+        FONT_COLOR = cls.__font_color
+        card = ImageDraw.Draw(cls.__template_card)
+        font_16number = ImageFont.truetype(cls.__font_path, 107)
+        font_other = ImageFont.truetype(cls.__font_path, 65)
+        card_16number_str = '   '.join(
+            [str(card_16number)[i:i + 4] for i
+             in range(0, len(str(card_16number)), 4)])
+        card.text((375, 710), card_16number_str,
+                  fill=FONT_COLOR, font=font_16number)
+        card.text((350, 860), card_expiry, fill=FONT_COLOR, font=font_other)
+        card.text((350, 920), card_holder, fill=FONT_COLOR, font=font_other)
+        return cls.__template_card
