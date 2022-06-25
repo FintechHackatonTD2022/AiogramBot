@@ -8,7 +8,7 @@ asyncio = "*"
 aiogram = "*"
 python-dotenv = "*"
 Pillow = "*"
-python-jwt = "*"
+jwt = "*"
 
 [dev-packages]
 autopep8 = "*"
