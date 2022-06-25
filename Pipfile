@@ -9,6 +9,7 @@ aiogram = "*"
 python-dotenv = "*"
 Pillow = "*"
 pyjwt = "*"
+cryptography = "==36.0.2"
 
 [dev-packages]
 autopep8 = "*"
