@@ -7,6 +7,7 @@ from aiogram.utils.markdown import hspoiler
 
 from bot_config import bot
 from services.draw_card.card_drawer import CardDrawer
+from . import menu
 
 data = {}
 
@@ -43,4 +44,6 @@ async def send_card(message: aiogram.types.Message, state: FSMContext):
     caption = f'CVV: {cvv}'
     img = CardDrawer.draw_to_input_file(
         1234567890991337, "13/37", "DOOM SLAYER")
-    await message.answer_photo(img, caption=caption)
+    await message.answer_photo(img, caption=caption,
+                               reply_markup=bot.keyboards['menu'])
+    await menu.FSM.menu.set()
