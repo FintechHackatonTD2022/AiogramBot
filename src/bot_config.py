@@ -6,8 +6,6 @@ from dotenv import load_dotenv
 
 from lib.bot import Bot
 
-# logger configuration
-# logging.config.fileConfig('logging.conf')
 logging.basicConfig(level=logging.WARNING,
                     format='%(name)s::%(levelname)s::%(message)s')
 logger = logging.getLogger(__name__)
