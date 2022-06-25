@@ -31,7 +31,7 @@ def form_dictionary_getcard(phone_number: str) -> dict:
     }
 
 
-def form_jws(payload: dict, signing_key: str, alg='RS256') -> str:
+def encode_jws(payload: dict, signing_key: str, alg='RS256') -> str:
     return jwt.encode(payload, signing_key, alg)
 
 
