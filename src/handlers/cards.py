@@ -21,7 +21,7 @@ async def generate_card(message: aiogram.types.Message):
 
 
 async def get_iin(message: aiogram.types.Message, state: FSMContext):
-    await state.finish()
+    await state.finish()  # [ ] validate
     data[f'{message.from_id}iin'] = message.text
     button = KeyboardButton('Отправить номер телефона', request_contact=True)
     kb = ReplyKeyboardMarkup(one_time_keyboard=True, resize_keyboard=True)
@@ -47,4 +47,6 @@ async def send_card(message: aiogram.types.Message, state: FSMContext):
     card.save('./photo.png', format='png')
     cvv = hspoiler('228')
     caption = f'CVV: {cvv}'
-    await message.answer_photo(open('./photo.png', 'rb'), caption=caption)
+    img = CardDrawer.draw_to_input_file(
+        1234567890991337, "13/38", "DOOM SLAYER")
+    await message.answer_photo(img, caption=caption)
