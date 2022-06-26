@@ -12,9 +12,9 @@ _ = misc.i18n.gettext
 
 
 async def init(message: aiogram.types.Message):
-    buttons = [['Сменить язык']]
+    buttons = [[_('Сменить язык')]]
     bot.add_keyboard('settings_menu', buttons)
-    await message.answer('Что вы хотите изменить',
+    await message.answer(_('Что вы хотите изменить'),
                          reply_markup=bot.keyboards['settings_menu'])
     bot.add_state_handler(FSM.settings_menu, settings_menu)
     await FSM.settings_menu.set()
@@ -23,10 +23,10 @@ async def init(message: aiogram.types.Message):
 async def settings_menu(message: aiogram.types.Message, state: FSMContext):
     await state.finish()
     match message.text:
-        case 'Сменить язык':
+        case _('Сменить язык'):
             buttons = [['🇷🇺', '🇰🇿', '🏴󠁧󠁢󠁥󠁮󠁧󠁿']]
             bot.add_keyboard('locales', buttons)
-            await message.answer('Выберите язык',
+            await message.answer(_('Выберите язык'),
                                  reply_markup=bot.keyboards['locales'])
             bot.add_state_handler(FSM.locales_menu, locales_menu)
             await FSM.locales_menu.set()
@@ -43,7 +43,7 @@ async def locales_menu(message: aiogram.types.Message, state: FSMContext):
             set_locale('kaz')
         case '🏴󠁧󠁢󠁥󠁮󠁧󠁿':
             set_locale('en')
-    text = f'Язык изменен на {message.text}'
+    text = _('Язык изменен на') + {message.text}
     await message.answer(text, reply_markup=bot.keyboards['menu'])
     await menu.FSM.menu.set()
 

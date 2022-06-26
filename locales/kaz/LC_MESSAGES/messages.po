@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-06-25 20:38+0600\n"
-"PO-Revision-Date: 2022-06-25 20:40+0600\n"
+"POT-Creation-Date: 2022-06-26 15:03+0600\n"
+"PO-Revision-Date: 2022-06-26 15:04+0600\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: kk_KZ\n"
 "Language-Team: kk_KZ <LL@li.org>\n"
@@ -18,29 +18,65 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.9.1\n"
 
-#: src/handlers/cards.py:18
-msgid "Вы пытаетесь получить виртуальную карту"
-msgstr "Сен карта"
-
-#: src/handlers/cards.py:19
-msgid "Для ее получения нам необходимо узнать о вас некоторою информацию"
-msgstr ""
-
 #: src/handlers/cards.py:20
-msgid "Напишите боту ваш ИИН"
+msgid "Вы пытаетесь получить виртуальную карту"
 msgstr ""
 
-#: src/handlers/cards.py:30
+#: src/handlers/cards.py:35 src/handlers/get_card.py:33
 msgid "Отправить номер телефона"
 msgstr ""
 
-#: src/handlers/cards.py:34
+#: src/handlers/cards.py:38 src/handlers/get_card.py:36
 msgid "Передайте номер телефона"
 msgstr ""
 
-#: src/handlers/help.py:13
+#: src/handlers/cards.py:52
+msgid "И последний вопрос на какую сумму открыть карту?"
+msgstr ""
+
+#: src/handlers/cards.py:66 src/handlers/get_card.py:55
+msgid "Пытаемся сделать карту..."
+msgstr ""
+
+#: src/handlers/cards.py:73 src/handlers/get_card.py:61
+msgid "Карта одобрена отправляем..."
+msgstr ""
+
+#: src/handlers/help.py:15
 msgid ""
 "Привет вот список команд которые есть в боте:\n"
 "\n"
+msgstr ""
+
+#: src/handlers/settings.py:15 src/handlers/settings.py:26
+msgid "Сменить язык"
+msgstr ""
+
+#: src/handlers/settings.py:17
+msgid "Что вы хотите изменить"
+msgstr ""
+
+#: src/handlers/settings.py:29
+msgid "Выберите язык"
+msgstr ""
+
+#: src/handlers/settings.py:46
+msgid "Язык изменен на"
+msgstr ""
+
+#: src/handlers/start.py:11
+msgid "💳 Generate gift card"
+msgstr ""
+
+#: src/handlers/start.py:11
+msgid "💰 View available cards"
+msgstr ""
+
+#: src/handlers/start.py:12
+msgid "⚙️ Settings"
+msgstr ""
+
+#: src/handlers/start.py:14
+msgid "Привет этот бот выполняет манипуляции с картами"
 msgstr ""
 

@@ -18,8 +18,11 @@ _ = misc.i18n.gettext
 async def generate_card(message: aiogram.types.Message):
     misc.i18n.ctx_locale.set(misc.locale)
     await message.answer(_('Вы пытаетесь получить виртуальную карту'))
-    await message.answer(_('Для ее получения нам необходимо узнать о вас некоторою информацию'))
-    await message.answer(_('Напишите боту ваш ИИН'))
+    text = 'Вы пытаетесь восстановить виртуальную карту'
+    text += 'Для ее получения нам необходимо узнать о вас некоторою информацию'
+    text += 'Напишите боту ваш ИИН'
+    text = _(text)
+    await message.answer(text)
     bot.add_state_handler(FSM.get_iin, get_iin)
     await FSM.get_iin.set()
 
@@ -46,7 +49,7 @@ class FSM(StatesGroup):
 async def get_phone(message: aiogram.types.Message, state: FSMContext):
     await state.finish()
     data[f'{message.from_id}phone'] = message.contact.phone_number
-    await message.answer('И последний вопрос на какую сумму открыть карту?')
+    await message.answer(_('И последний вопрос на какую сумму открыть карту?'))
     bot.add_state_handler(FSM.get_amount, get_amount)
     await FSM.get_amount.set()
 
@@ -60,14 +63,14 @@ async def get_amount(message: aiogram.types.Message, state: FSMContext):
 async def send_card(message: aiogram.types.Message):
     mes_try_create_card = await bot.send_message(
         message.from_id,
-        'Пытаемся сделать карту...',)
+        _('Пытаемся сделать карту...'))
 
     phone_number = data[f'{message.from_id}phone']
     iin = data[f'{message.from_id}iin']
     amount = data[f'{message.from_id}amount']
 
     card_data = CardApi.create_card(phone_number, iin, amount)
-    await mes_try_create_card.edit_text('Карта одобрена отправляем...')
+    await mes_try_create_card.edit_text(_('Карта одобрена отправляем...'))
     await message.answer_chat_action('upload_photo')
 
     img = CardDrawer.draw_to_input_file(
