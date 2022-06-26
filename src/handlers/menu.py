@@ -15,7 +15,7 @@ async def check_menu(message: aiogram.types.Message, state: FSMContext):
     match message.text:
         case '💳 Открыть предоплаченную карту':
             await generate_card(message)
-        case '💰 Посмотреть доступные карты':
+        case '💰 Восстановить карту':
             await get_card(message)
         case '⚙️ Настройки':
             await init(message)
