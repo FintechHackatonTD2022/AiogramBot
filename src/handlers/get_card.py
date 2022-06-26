@@ -18,7 +18,7 @@ data = {}
 async def get_card(message: aiogram.types.Message):
     misc.i18n.ctx_locale.set(misc.get_locale(message.from_id))
     text = _('Вы пытаетесь восстановить виртуальную карту. ')
-    text += _('Для ее получения нам необходимо узнать о вас некоторою информацию')
+    text += _('Для ее получения нам необходимо узнать о вас некоторою информацию\n')
     text += _('<b>Напишите боту ваш ИИН</b>')
     await message.answer(text)
     bot.add_state_handler(FSM.get_iin, get_iin)
@@ -43,7 +43,7 @@ class FSM(StatesGroup):
 
 
 @bot.dp.message_handler(content_types=['contact'], state=FSM.get_contact_)
-async def get_phone(message: aiogram.types.Message, state: FSMContext):
+async def get_phone_(message: aiogram.types.Message, state: FSMContext):
     await state.finish()
     data[f'{message.from_id}phone'] = message.contact.phone_number
     await send_card(message)
