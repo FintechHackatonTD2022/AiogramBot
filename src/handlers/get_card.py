@@ -23,13 +23,13 @@ async def get_card(message: aiogram.types.Message):
          некоторую информацию: ')
     text += _('<b>Ваш ИИН: </b>')
     await message.answer(text)
-    bot.add_state_handler(FSM.get_iin, get_iin)
-    await FSM.get_iin.set()
+    bot.add_state_handler(FSM_GET.get_iin, get_iin)
+    await FSM_GET.get_iin.set()
 
 
 async def get_iin(message: aiogram.types.Message, state: FSMContext):
     misc.i18n.ctx_locale.set(misc.get_locale(message.from_id))
-    await state.finish()  # [ ] validate
+    await state.finish()
     if Validator.validate_iin(message.text):
         data[f'{message.from_id}iin'] = message.text
         button = KeyboardButton(
@@ -37,18 +37,18 @@ async def get_iin(message: aiogram.types.Message, state: FSMContext):
         kb = ReplyKeyboardMarkup(one_time_keyboard=True, resize_keyboard=True)
         kb.add(button)
         await message.answer(_('Ваш номер телефона: '), reply_markup=kb)
-        await FSM.get_contact_card.set()
+        await FSM_GET.get_contact_card.set()
     else:
         await message.answer(_('Введите корректный ИИН'))
-        await FSM.get_iin.set()
+        await FSM_GET.get_iin.set()
 
 
-class FSM(StatesGroup):
+class FSM_GET(StatesGroup):
     get_iin = State()
     get_contact_card = State()
 
 
-@bot.dp.message_handler(content_types=['contact'], state=FSM.get_contact_card)
+@bot.dp.message_handler(content_types=['contact'], state=FSM_GET.get_contact_card)
 async def get_phone_card(message: aiogram.types.Message, state: FSMContext):
     await state.finish()
     data[f'{message.from_id}phone'] = message.contact.phone_number
@@ -71,8 +71,7 @@ async def send_card(message: aiogram.types.Message):
 
         img = CardDrawer.draw_to_input_file(
             int(card_data['pan']),
-            f'{card_data["exp_month"]}/{card_data["exp_year"]}',
-            message.from_user.full_name)
+            f'{card_data["exp_month"]}/{card_data["exp_year"]}')
 
         cvv = hspoiler(card_data["cvc2"])
         caption = f'CVV: {cvv}'

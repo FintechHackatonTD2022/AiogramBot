@@ -10,8 +10,8 @@ class CardDrawer:
 
     @ classmethod
     def draw_to_input_file(cls, card_16number: int,
-                           card_expiry: str, card_holder: str) -> InputFile:
-        image = cls.__draw_card(card_16number, card_expiry, card_holder)
+                           card_expiry: str) -> InputFile:
+        image = cls.__draw_card(card_16number, card_expiry)
         image_bytes_io = BytesIO()
         image.save(image_bytes_io, format='PNG')
         image_bytes_io = BytesIO(image_bytes_io.getvalue())
@@ -19,7 +19,8 @@ class CardDrawer:
 
     @ classmethod
     def __draw_card(cls, card_16number: int,
-                    card_expiry: str, card_holder: str) -> Image:
+                    card_expiry: str,
+                    card_holder: str = 'PREPAID CARD') -> Image:
         FONT_COLOR = cls.__font_color
         template_card = cls.__template_card.copy()
         card = ImageDraw.Draw(template_card)

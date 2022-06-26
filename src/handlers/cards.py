@@ -29,7 +29,7 @@ async def generate_card(message: aiogram.types.Message):
 
 async def get_iin(message: aiogram.types.Message, state: FSMContext):
     misc.i18n.ctx_locale.set(misc.get_locale(message.from_id))
-    await state.finish()  # [ ] validate
+    await state.finish()
     misc.i18n.ctx_locale.set(misc.locale)
 
     if Validator.validate_iin(message.text):
@@ -87,8 +87,7 @@ async def send_card(message: aiogram.types.Message):
 
     img = CardDrawer.draw_to_input_file(
         int(card_data['pan']),
-        f'{card_data["exp_month"]}/{card_data["exp_year"]}',
-        message.from_user.full_name)
+        f'{card_data["exp_month"]}/{card_data["exp_year"]}')
 
     cvv = hspoiler(card_data["cvc2"])
     caption = f'CVV: {cvv}'
