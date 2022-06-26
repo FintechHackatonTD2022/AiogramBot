@@ -10,11 +10,7 @@ python-dotenv = "*"
 Pillow = "*"
 pyjwt = "*"
 cryptography = "==36.0.2"
-<<<<<<< Updated upstream
-requests = "*"
-=======
 rsa = "*"
->>>>>>> Stashed changes
 
 [dev-packages]
 autopep8 = "*"
