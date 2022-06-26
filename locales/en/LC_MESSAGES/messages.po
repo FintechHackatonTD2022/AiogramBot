@@ -19,114 +19,114 @@ msgstr ""
 "Generated-By: Babel 2.9.1\n"
 
 #: src/handlers/cards.py:21
-msgid "Вы пытаетесь получить виртуальную карту. "
+msgid "You are trying to get a virtual card. "
 msgstr ""
 
 #: src/handlers/cards.py:22
-msgid "Для её получения нам необходимо узнать о вас "
+msgid "To obtain it, we need to find out "
 msgstr ""
 
 #: src/handlers/cards.py:23
-msgid "некоторую информацию, это не займет много времени:\n"
+msgid "some information about you, it will not take much time:\n"
 msgstr ""
 
 #: src/handlers/cards.py:24
-msgid "<b>Ваш ИИН:</b>"
+msgid "<b>Your IIN:</b>"
 msgstr ""
 
 #: src/handlers/cards.py:38 src/handlers/get_card.py:36
-msgid "Отправить номер телефона"
+msgid "Send phone number"
 msgstr ""
 
 #: src/handlers/cards.py:41
-msgid "Ваш номер телефона:"
+msgid "Your phone number:"
 msgstr ""
 
 #: src/handlers/cards.py:44 src/handlers/get_card.py:42
-msgid "Введите корректный ИИН"
+msgid "Please, enter valid IIN"
 msgstr ""
 
 #: src/handlers/cards.py:59
-msgid "Последний вопрос: на какую сумму открыть карту?"
+msgid "The last question: how much money you want your card have?"
 msgstr ""
 
 #: src/handlers/cards.py:70
-msgid "Введите корректную сумму"
+msgid "Please, enter the valid amount"
 msgstr ""
 
 #: src/handlers/cards.py:78
-msgid "Пытаемся создать карту..."
+msgid "Trying to create a card..."
 msgstr ""
 
 #: src/handlers/cards.py:85
-msgid "Карта одобрена, отправляем..."
+msgid "Card approved, sending..."
 msgstr ""
 
 #: src/handlers/get_card.py:21
-msgid "Вы пытаетесь восстановить виртуальную карту. "
+msgid "You are trying to recover a virtual card. "
 msgstr ""
 
 #: src/handlers/get_card.py:22
 msgid ""
-"Для ее получения нам необходимо узнать о вас         некоторую "
-"информацию: "
+"In order to receive it, we need to know some "
+"information about you: "
 msgstr ""
 
 #: src/handlers/get_card.py:24
-msgid "<b>Ваш ИИН: </b>"
+msgid "<b>Your IIN: </b>"
 msgstr ""
 
 #: src/handlers/get_card.py:39
-msgid "Ваш номер телефона: "
+msgid "Your phone number: "
 msgstr ""
 
 #: src/handlers/get_card.py:62
-msgid "Пытаемся найти карту..."
+msgid "Trying to find your card..."
 msgstr ""
 
 #: src/handlers/get_card.py:69
-msgid "Карта найдена, отправляем..."
+msgid "We found your card! Sending..."
 msgstr ""
 
 #: src/handlers/get_card.py:83
-msgid "Карта не найдена"
+msgid "Sorry, but your card is not in our database"
 msgstr ""
 
 #: src/handlers/help.py:15
 msgid ""
-"Привет, вот список команд бота:\n"
+"Hello, here is the list of commands:\n"
 "\n"
 msgstr ""
 
 #: src/handlers/settings.py:16 src/handlers/settings.py:27
-msgid "Сменить язык"
+msgid "Change language"
 msgstr ""
 
 #: src/handlers/settings.py:18
-msgid "Что вы хотите изменить"
+msgid "What do you want to edit?"
 msgstr ""
 
 #: src/handlers/settings.py:32
-msgid "Выберите язык"
+msgid "Please, choose language"
 msgstr ""
 
 #: src/handlers/settings.py:48
-msgid "Язык изменен на"
+msgid "Language changed to"
 msgstr ""
 
 #: src/handlers/start.py:12
-msgid "💳 Открыть предоплаченную карту"
+msgid "💳 Open a prepaid card"
 msgstr ""
 
 #: src/handlers/start.py:12
-msgid "💰 Восстановить карту"
+msgid "💰 Recover a card"
 msgstr ""
 
 #: src/handlers/start.py:13
-msgid "⚙️ Настройки"
+msgid "⚙️ Settings"
 msgstr ""
 
 #: src/handlers/start.py:15
-msgid "Привет, этот бот выпускает предоплаченные карты"
+msgid "Hello, this bot issues prepaid cards"
 msgstr ""
 
