@@ -30,12 +30,10 @@ def form_dictionary_createcard(currency: int, amount: str,
     }
 
 
-def form_dictionary_getcard(phone_number: str) -> dict:
+def form_dictionary_getcard(phone_number: str, iin: str) -> dict:
     return {
-        "msisdn": phone_number,
-        'iat': int(datetime.now(timezone.utc).timestamp()),
-        'exp': int((datetime.now(timezone.utc) + timedelta(hours=1)
-                    ).timestamp())
+        "telephone": phone_number,
+        "iin": iin
     }
 
 

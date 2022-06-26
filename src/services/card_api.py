@@ -14,7 +14,7 @@ class CardApi:
     __url = BACKEND_URL + 'api/order/'
 
     @classmethod
-    def create_card(cls, phone_number: str, iin: str, amount: str):
+    def create_card(cls, phone_number: str, iin: str, amount: str) -> dict:
         data = form_dictionary_createcard(
             398, amount, phone_number, iin)
         resp = requests.post(cls.__url + 'create_card/',
@@ -22,12 +22,13 @@ class CardApi:
         return cls.__decrypt_response(resp)
 
     @classmethod
-    def get_card(cls):
-        data = form_dictionary_getcard('87085448617')
-        encrypted_data = cls.__encrypt_data(data)
-        data = {'encrypted': encrypted_data}
-        resp = requests.get(cls.__url + 'get_card/', json=data)
-        return cls.__decrypt_data(resp.text)
+    def get_card(cls, phone: str, iin: str) -> dict:
+        data = form_dictionary_getcard(phone, iin)
+        print(cls.__encrypt_request(data))
+        resp = requests.post(cls.__url + 'get_card/',
+                             json=cls.__encrypt_request(data))
+        print(resp.text)
+        return cls.__decrypt_response(resp)
 
     @classmethod
     def __encrypt_request(cls, request: dict) -> str:

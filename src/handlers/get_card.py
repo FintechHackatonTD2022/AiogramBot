@@ -5,17 +5,17 @@ from aiogram.types import (KeyboardButton, ReplyKeyboardMarkup,
                            ReplyKeyboardRemove)
 from aiogram.utils.markdown import hspoiler
 
-import misc
 from bot_config import bot
+import misc
 from services.card_api import CardApi
 from services.card_drawer import CardDrawer
 from . import menu
 
-data = {}
 _ = misc.i18n.gettext
+data = {}
 
 
-async def generate_card(message: aiogram.types.Message):
+async def get_card(message: aiogram.types.Message):
     misc.i18n.ctx_locale.set(misc.locale)
     await message.answer(_('Вы пытаетесь получить виртуальную карту'))
     await message.answer(_('Для ее получения нам необходимо узнать о вас некоторою информацию'))
@@ -26,34 +26,24 @@ async def generate_card(message: aiogram.types.Message):
 
 async def get_iin(message: aiogram.types.Message, state: FSMContext):
     await state.finish()  # [ ] validate
-    misc.i18n.ctx_locale.set(misc.locale)
     data[f'{message.from_id}iin'] = message.text
     button = KeyboardButton(
         _('Отправить номер телефона'), request_contact=True)
     kb = ReplyKeyboardMarkup(one_time_keyboard=True, resize_keyboard=True)
     kb.add(button)
     await message.answer(_('Передайте номер телефона'), reply_markup=kb)
-    await FSM.get_contact.set()
+    await FSM.get_contact_.set()
 
 
 class FSM(StatesGroup):
     get_iin = State()
-    get_amount = State()
-    get_contact = State()
+    get_contact_ = State()
 
 
-@bot.dp.message_handler(content_types=['contact'], state=FSM.get_contact)
+@bot.dp.message_handler(content_types=['contact'], state=FSM.get_contact_)
 async def get_phone(message: aiogram.types.Message, state: FSMContext):
     await state.finish()
     data[f'{message.from_id}phone'] = message.contact.phone_number
-    await message.answer('И последний вопрос на какую сумму открыть карту?')
-    bot.add_state_handler(FSM.get_amount, get_amount)
-    await FSM.get_amount.set()
-
-
-async def get_amount(message: aiogram.types.Message, state: FSMContext):
-    await state.finish()
-    data[f'{message.from_id}amount'] = message.text
     await send_card(message)
 
 
@@ -64,9 +54,8 @@ async def send_card(message: aiogram.types.Message):
 
     phone_number = data[f'{message.from_id}phone']
     iin = data[f'{message.from_id}iin']
-    amount = data[f'{message.from_id}amount']
 
-    card_data = CardApi.create_card(phone_number, iin, amount)
+    card_data = CardApi.get_card(phone_number, iin)
     await mes_try_create_card.edit_text('Карта одобрена отправляем...')
     await message.answer_chat_action('upload_photo')
 
