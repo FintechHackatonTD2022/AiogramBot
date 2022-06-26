@@ -31,13 +31,18 @@ async def get_iin(message: aiogram.types.Message, state: FSMContext):
     misc.i18n.ctx_locale.set(misc.get_locale(message.from_id))
     await state.finish()  # [ ] validate
     misc.i18n.ctx_locale.set(misc.locale)
-    data[f'{message.from_id}iin'] = message.text
-    button = KeyboardButton(
-        _('Отправить номер телефона'), request_contact=True)
-    kb = ReplyKeyboardMarkup(one_time_keyboard=True, resize_keyboard=True)
-    kb.add(button)
-    await message.answer(_('Ваш номер телефона:'), reply_markup=kb)
-    await FSM.get_contact.set()
+
+    if Validator.validate_iin(message.text):
+        data[f'{message.from_id}iin'] = message.text
+        button = KeyboardButton(
+            _('Отправить номер телефона'), request_contact=True)
+        kb = ReplyKeyboardMarkup(one_time_keyboard=True, resize_keyboard=True)
+        kb.add(button)
+        await message.answer(_('Ваш номер телефона:'), reply_markup=kb)
+        await FSM.get_contact.set()
+    else:
+        await message.answer('Введите корректный ИИН')
+        await FSM.get_iin.set()
 
 
 class FSM(StatesGroup):
