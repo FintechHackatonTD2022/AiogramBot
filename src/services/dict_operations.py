@@ -70,14 +70,18 @@ def process_response(response: dict) -> dict | str:
 
 def test(publickey_path: str, privatekey_path: str) -> None:
     dic = form_dictionary_createcard(
-        398, "120000.00", "77773546064", "126733279987")
+        398,
+        "120000.00",
+        "77773557075",
+        "126733279987"
+    )
     pub = load_publickey(publickey_path)
     prv = load_privatekey(privatekey_path)
     enc = encrypt_dict(dic, pub)
     print(f"\nEncrypted dictionary: {enc}")
-    dec = decrypt_dict(enc, prv)
+    dec = rsa.decrypt(enc, prv)
     print(dec)
 
 
 if __name__ == "__main__":
-    test("bk_public.pem", "bk_private.pem")
+    test("bk_public.pem", "bt_private.pem")
