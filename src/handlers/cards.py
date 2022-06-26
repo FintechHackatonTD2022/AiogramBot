@@ -41,7 +41,7 @@ async def get_iin(message: aiogram.types.Message, state: FSMContext):
         await message.answer(_('Ваш номер телефона:'), reply_markup=kb)
         await FSM.get_contact.set()
     else:
-        await message.answer('Введите корректный ИИН')
+        await message.answer(_('Введите корректный ИИН'))
         await FSM.get_iin.set()
 
 
@@ -67,7 +67,7 @@ async def get_amount(message: aiogram.types.Message, state: FSMContext):
         data[f'{message.from_id}amount'] = message.text
         await send_card(message)
     else:
-        await message.answer('Введите корректную сумму')
+        await message.answer(_('Введите корректную сумму'))
         await FSM.get_amount.set()
 
 

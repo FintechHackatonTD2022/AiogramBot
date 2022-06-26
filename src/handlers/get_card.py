@@ -39,7 +39,7 @@ async def get_iin(message: aiogram.types.Message, state: FSMContext):
         await message.answer(_('Ваш номер телефона: '), reply_markup=kb)
         await FSM.get_contact_card.set()
     else:
-        await message.answer('Введите корректный ИИН')
+        await message.answer(_('Введите корректный ИИН'))
         await FSM.get_iin.set()
 
 
@@ -81,6 +81,6 @@ async def send_card(message: aiogram.types.Message):
                                    reply_markup=bot.keyboards['menu'])
         await mes_try_create_card.delete()
     except:
-        await mes_try_create_card.edit_text('Карта не найдена')
+        await mes_try_create_card.edit_text(_('Карта не найдена'))
 
     await menu.FSM.menu.set()
