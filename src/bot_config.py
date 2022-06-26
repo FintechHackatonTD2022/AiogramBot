@@ -5,6 +5,8 @@ import logging.config
 from dotenv import load_dotenv
 
 from lib.bot import Bot
+from services.schedule import Schedule
+from middlewares.i18n import I18nMiddleware
 
 logging.basicConfig(level=logging.WARNING,
                     format='%(name)s::%(levelname)s::%(message)s')
