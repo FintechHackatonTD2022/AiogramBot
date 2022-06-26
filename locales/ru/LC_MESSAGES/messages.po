@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-06-26 15:03+0600\n"
-"PO-Revision-Date: 2022-06-26 15:04+0600\n"
+"POT-Creation-Date: 2022-06-26 15:19+0600\n"
+"PO-Revision-Date: 2022-06-26 15:19+0600\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ru\n"
 "Language-Team: ru <LL@li.org>\n"
@@ -23,11 +23,19 @@ msgstr ""
 msgid "Вы пытаетесь получить виртуальную карту"
 msgstr ""
 
-#: src/handlers/cards.py:35 src/handlers/get_card.py:33
+#: src/handlers/cards.py:21 src/handlers/get_card.py:21
+msgid "Для ее получения нам необходимо узнать о вас некоторою информацию"
+msgstr ""
+
+#: src/handlers/cards.py:22 src/handlers/get_card.py:22
+msgid "Напишите боту ваш ИИН"
+msgstr ""
+
+#: src/handlers/cards.py:34 src/handlers/get_card.py:33
 msgid "Отправить номер телефона"
 msgstr ""
 
-#: src/handlers/cards.py:38 src/handlers/get_card.py:36
+#: src/handlers/cards.py:37 src/handlers/get_card.py:36
 msgid "Передайте номер телефона"
 msgstr ""
 
@@ -35,12 +43,16 @@ msgstr ""
 msgid "И последний вопрос на какую сумму открыть карту?"
 msgstr ""
 
-#: src/handlers/cards.py:66 src/handlers/get_card.py:55
+#: src/handlers/cards.py:67 src/handlers/get_card.py:56
 msgid "Пытаемся сделать карту..."
 msgstr ""
 
-#: src/handlers/cards.py:73 src/handlers/get_card.py:61
+#: src/handlers/cards.py:74 src/handlers/get_card.py:62
 msgid "Карта одобрена отправляем..."
+msgstr ""
+
+#: src/handlers/get_card.py:20
+msgid "Вы пытаетесь восстановить виртуальную карту"
 msgstr ""
 
 #: src/handlers/help.py:15
@@ -49,19 +61,19 @@ msgid ""
 "\n"
 msgstr ""
 
-#: src/handlers/settings.py:15 src/handlers/settings.py:26
+#: src/handlers/settings.py:16 src/handlers/settings.py:27
 msgid "Сменить язык"
 msgstr ""
 
-#: src/handlers/settings.py:17
+#: src/handlers/settings.py:18
 msgid "Что вы хотите изменить"
 msgstr ""
 
-#: src/handlers/settings.py:29
+#: src/handlers/settings.py:32
 msgid "Выберите язык"
 msgstr ""
 
-#: src/handlers/settings.py:46
+#: src/handlers/settings.py:48
 msgid "Язык изменен на"
 msgstr ""
 

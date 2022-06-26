@@ -11,7 +11,7 @@ _ = i18n.gettext
 
 
 async def list_of_commands(message: aiogram.types.Message):
-    i18n.ctx_locale.set(misc.locale)
+    misc.i18n.ctx_locale.set(misc.get_locale(message.from_id))
     text = _('Привет вот список команд которые есть в боте:\n\n')
     for cmd in users:
         text += '/%s\n' % cmd

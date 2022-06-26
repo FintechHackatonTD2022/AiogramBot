@@ -16,17 +16,17 @@ data = {}
 
 
 async def get_card(message: aiogram.types.Message):
-    misc.i18n.ctx_locale.set(misc.locale)
-    text = 'Вы пытаетесь восстановить виртуальную карту'
-    text += 'Для ее получения нам необходимо узнать о вас некоторою информацию'
-    text += 'Напишите боту ваш ИИН'
-    text = _(text)
+    misc.i18n.ctx_locale.set(misc.get_locale(message.from_id))
+    text = _('Вы пытаетесь восстановить виртуальную карту')
+    text += _('Для ее получения нам необходимо узнать о вас некоторою информацию')
+    text += _('Напишите боту ваш ИИН')
     await message.answer(text)
     bot.add_state_handler(FSM.get_iin, get_iin)
     await FSM.get_iin.set()
 
 
 async def get_iin(message: aiogram.types.Message, state: FSMContext):
+    misc.i18n.ctx_locale.set(misc.get_locale(message.from_id))
     await state.finish()  # [ ] validate
     data[f'{message.from_id}iin'] = message.text
     button = KeyboardButton(
@@ -50,6 +50,7 @@ async def get_phone(message: aiogram.types.Message, state: FSMContext):
 
 
 async def send_card(message: aiogram.types.Message):
+    misc.i18n.ctx_locale.set(misc.get_locale(message.from_id))
     mes_try_create_card = await bot.send_message(
         message.from_id,
         _('Пытаемся сделать карту...'))

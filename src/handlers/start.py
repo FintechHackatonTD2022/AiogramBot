@@ -8,6 +8,7 @@ _ = misc.i18n.gettext
 
 
 async def start(message: aiogram.types.Message):
+    misc.i18n.ctx_locale.set(misc.get_locale(message.from_id))
     buttons = [[_('💳 Generate gift card'), _('💰 View available cards')],
                [_('⚙️ Settings')]]
     bot.add_keyboard('menu', buttons)

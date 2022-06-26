@@ -7,11 +7,12 @@ from aiogram.utils.markdown import hspoiler
 import misc
 from bot_config import bot
 from utils.localization import set_locale
-
+from . import menu
 _ = misc.i18n.gettext
 
 
 async def init(message: aiogram.types.Message):
+    misc.i18n.ctx_locale.set(misc.get_locale(message.from_id))
     buttons = [[_('Сменить язык')]]
     bot.add_keyboard('settings_menu', buttons)
     await message.answer(_('Что вы хотите изменить'),
@@ -21,9 +22,11 @@ async def init(message: aiogram.types.Message):
 
 
 async def settings_menu(message: aiogram.types.Message, state: FSMContext):
+    misc.i18n.ctx_locale.set(misc.get_locale(message.from_id))
     await state.finish()
+    text_change = _('Сменить язык')
     match message.text:
-        case _('Сменить язык'):
+        case 'Сменить язык':
             buttons = [['🇷🇺', '🇰🇿', '🏴󠁧󠁢󠁥󠁮󠁧󠁿']]
             bot.add_keyboard('locales', buttons)
             await message.answer(_('Выберите язык'),
@@ -33,8 +36,7 @@ async def settings_menu(message: aiogram.types.Message, state: FSMContext):
 
 
 async def locales_menu(message: aiogram.types.Message, state: FSMContext):
-    from . import menu
-
+    misc.i18n.ctx_locale.set(misc.get_locale(message.from_id))
     await state.finish()
     match message.text:
         case '🇷🇺':
@@ -43,7 +45,7 @@ async def locales_menu(message: aiogram.types.Message, state: FSMContext):
             set_locale('kaz')
         case '🏴󠁧󠁢󠁥󠁮󠁧󠁿':
             set_locale('en')
-    text = _('Язык изменен на') + {message.text}
+    text = _('Язык изменен на') + message.text
     await message.answer(text, reply_markup=bot.keyboards['menu'])
     await menu.FSM.menu.set()
 
