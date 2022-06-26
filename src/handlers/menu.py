@@ -13,7 +13,9 @@ async def check_menu(message: aiogram.types.Message, state: FSMContext):
         case '💳 Generate gift card':
             await generate_card(message)
         case '💰 View available cards':
-            await message.answer('Someday it will work')
+            await message.answer('Someday it will work',
+                                 reply_markup=bot.keyboards['menu'])
+            await FSM.menu.set()
         case '⚙️ Settings':
             await init(message)
 
