@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-06-26 15:19+0600\n"
-"PO-Revision-Date: 2022-06-26 15:19+0600\n"
+"POT-Creation-Date: 2022-06-26 15:34+0600\n"
+"PO-Revision-Date: 2022-06-26 15:34+0600\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: en\n"
 "Language-Team: en <LL@li.org>\n"
@@ -19,15 +19,15 @@ msgstr ""
 "Generated-By: Babel 2.9.1\n"
 
 #: src/handlers/cards.py:20
-msgid "Вы пытаетесь получить виртуальную карту"
-msgstr "You"
+msgid "Вы пытаетесь получить виртуальную карту. "
+msgstr ""
 
-#: src/handlers/cards.py:21 src/handlers/get_card.py:21
-msgid "Для ее получения нам необходимо узнать о вас некоторою информацию"
+#: src/handlers/cards.py:21
+msgid "Для ее получения нам необходимо узнать о вас некоторою информацию\n"
 msgstr ""
 
 #: src/handlers/cards.py:22 src/handlers/get_card.py:22
-msgid "Напишите боту ваш ИИН"
+msgid "<b>Напишите боту ваш ИИН</b>"
 msgstr ""
 
 #: src/handlers/cards.py:34 src/handlers/get_card.py:33
@@ -51,7 +51,11 @@ msgid "Карта одобрена отправляем..."
 msgstr ""
 
 #: src/handlers/get_card.py:20
-msgid "Вы пытаетесь восстановить виртуальную карту"
+msgid "Вы пытаетесь восстановить виртуальную карту. "
+msgstr ""
+
+#: src/handlers/get_card.py:21
+msgid "Для ее получения нам необходимо узнать о вас некоторою информацию"
 msgstr ""
 
 #: src/handlers/help.py:15
@@ -76,19 +80,19 @@ msgstr ""
 msgid "Язык изменен на"
 msgstr ""
 
-#: src/handlers/start.py:11
+#: src/handlers/start.py:12
 msgid "💳 Generate gift card"
 msgstr ""
 
-#: src/handlers/start.py:11
+#: src/handlers/start.py:12
 msgid "💰 View available cards"
 msgstr ""
 
-#: src/handlers/start.py:12
+#: src/handlers/start.py:13
 msgid "⚙️ Settings"
 msgstr ""
 
-#: src/handlers/start.py:14
+#: src/handlers/start.py:15
 msgid "Привет этот бот выполняет манипуляции с картами"
 msgstr ""
 
