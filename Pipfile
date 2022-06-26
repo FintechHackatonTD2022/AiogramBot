@@ -11,6 +11,7 @@ Pillow = "*"
 pyjwt = "*"
 cryptography = "==36.0.2"
 rsa = "*"
+requests = "*"
 
 [dev-packages]
 autopep8 = "*"

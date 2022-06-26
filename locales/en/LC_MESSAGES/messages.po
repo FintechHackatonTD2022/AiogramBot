@@ -19,8 +19,8 @@ msgstr ""
 "Generated-By: Babel 2.9.1\n"
 
 #: src/handlers/cards.py:21
-msgid "You are trying to get a virtual card. "
-msgstr ""
+msgid "Вы пытаетесь получить виртуальную карту."   
+msgstr "You are trying to get a virtual card."
 
 #: src/handlers/cards.py:22
 msgid "To obtain it, we need to find out "

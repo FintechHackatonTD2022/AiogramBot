@@ -17,8 +17,10 @@ class CardApi:
     def create_card(cls, phone_number: str, iin: str, amount: str) -> dict:
         data = form_dictionary_createcard(
             398, amount, phone_number, iin)
+        print(data)
         resp = requests.post(cls.__url + 'create_card/',
                              json=cls.__encrypt_request(data))
+        print(resp)
         return cls.__decrypt_response(resp)
 
     @classmethod
@@ -34,6 +36,7 @@ class CardApi:
     def __encrypt_request(cls, request: dict) -> str:
         encrypted_str = encrypt_dict(
             request, load_publickey(BACKEND_PUBLIC_KEY_PATH))
+        print(encrypted_str)
         return {'encrypted': encrypted_str.decode('utf-8')}
 
     @classmethod
