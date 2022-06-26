@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-06-26 15:34+0600\n"
-"PO-Revision-Date: 2022-06-26 15:34+0600\n"
+"POT-Creation-Date: 2022-06-26 17:01+0600\n"
+"PO-Revision-Date: 2022-06-26 17:01+0600\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ru\n"
 "Language-Team: ru <LL@li.org>\n"
@@ -19,49 +19,83 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.9.1\n"
 
-#: src/handlers/cards.py:20
+#: src/handlers/cards.py:21
 msgid "Вы пытаетесь получить виртуальную карту. "
 msgstr ""
 
-#: src/handlers/cards.py:21
-msgid "Для ее получения нам необходимо узнать о вас некоторою информацию\n"
+#: src/handlers/cards.py:22
+msgid "Для её получения нам необходимо узнать о вас "
 msgstr ""
 
-#: src/handlers/cards.py:22 src/handlers/get_card.py:22
-msgid "<b>Напишите боту ваш ИИН</b>"
+#: src/handlers/cards.py:23
+msgid "некоторую информацию, это не займет много времени:\n"
 msgstr ""
 
-#: src/handlers/cards.py:34 src/handlers/get_card.py:33
+#: src/handlers/cards.py:24
+msgid "<b>Ваш ИИН:</b>"
+msgstr ""
+
+#: src/handlers/cards.py:38 src/handlers/get_card.py:36
 msgid "Отправить номер телефона"
 msgstr ""
 
-#: src/handlers/cards.py:37 src/handlers/get_card.py:36
-msgid "Передайте номер телефона"
+#: src/handlers/cards.py:41
+msgid "Ваш номер телефона:"
 msgstr ""
 
-#: src/handlers/cards.py:52
-msgid "И последний вопрос на какую сумму открыть карту?"
+#: src/handlers/cards.py:44 src/handlers/get_card.py:42
+msgid "Введите корректный ИИН"
 msgstr ""
 
-#: src/handlers/cards.py:67 src/handlers/get_card.py:56
-msgid "Пытаемся сделать карту..."
+#: src/handlers/cards.py:59
+msgid "Последний вопрос: на какую сумму открыть карту?"
 msgstr ""
 
-#: src/handlers/cards.py:74 src/handlers/get_card.py:62
-msgid "Карта одобрена отправляем..."
+#: src/handlers/cards.py:70
+msgid "Введите корректную сумму"
 msgstr ""
 
-#: src/handlers/get_card.py:20
-msgid "Вы пытаетесь восстановить виртуальную карту. "
+#: src/handlers/cards.py:78
+msgid "Пытаемся создать карту..."
+msgstr ""
+
+#: src/handlers/cards.py:85
+msgid "Карта одобрена, отправляем..."
 msgstr ""
 
 #: src/handlers/get_card.py:21
-msgid "Для ее получения нам необходимо узнать о вас некоторою информацию"
+msgid "Вы пытаетесь восстановить виртуальную карту. "
+msgstr ""
+
+#: src/handlers/get_card.py:22
+msgid ""
+"Для ее получения нам необходимо узнать о вас         некоторую "
+"информацию: "
+msgstr ""
+
+#: src/handlers/get_card.py:24
+msgid "<b>Ваш ИИН: </b>"
+msgstr ""
+
+#: src/handlers/get_card.py:39
+msgid "Ваш номер телефона: "
+msgstr ""
+
+#: src/handlers/get_card.py:62
+msgid "Пытаемся найти карту..."
+msgstr ""
+
+#: src/handlers/get_card.py:69
+msgid "Карта найдена, отправляем..."
+msgstr ""
+
+#: src/handlers/get_card.py:83
+msgid "Карта не найдена"
 msgstr ""
 
 #: src/handlers/help.py:15
 msgid ""
-"Привет вот список команд которые есть в боте:\n"
+"Привет, вот список команд бота:\n"
 "\n"
 msgstr ""
 
@@ -82,18 +116,18 @@ msgid "Язык изменен на"
 msgstr ""
 
 #: src/handlers/start.py:12
-msgid "💳 Generate gift card"
+msgid "💳 Открыть предоплаченную карту"
 msgstr ""
 
 #: src/handlers/start.py:12
-msgid "💰 View available cards"
+msgid "💰 Восстановить карту"
 msgstr ""
 
 #: src/handlers/start.py:13
-msgid "⚙️ Settings"
+msgid "⚙️ Настройки"
 msgstr ""
 
 #: src/handlers/start.py:15
-msgid "Привет этот бот выполняет манипуляции с картами"
+msgid "Привет, этот бот выпускает предоплаченные карты"
 msgstr ""
 
