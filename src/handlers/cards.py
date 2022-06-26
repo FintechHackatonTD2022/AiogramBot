@@ -38,6 +38,7 @@ async def get_iin(message: aiogram.types.Message, state: FSMContext):
 
 class FSM(StatesGroup):
     get_iin = State()
+    get_amount = State()
     send_card = State()
 
 
@@ -45,12 +46,41 @@ class FSM(StatesGroup):
 async def send_card(message: aiogram.types.Message, state: FSMContext):
     await state.finish()
     data[f'{message.from_id}phone'] = message.contact.phone_number
-    await message.answer('Вот твоя карта', reply_markup=ReplyKeyboardRemove())
+    await message.answer('И последний вопрос на какую сумму открыть карту?')
+    bot.add_state_handler(FSM.get_amount, get_amount)
+    await FSM.get_amount.set()
+
+
+async def get_amount(message: aiogram.types.Message, state: FSMContext):
+    await state.finish()
+    data[f'{message.from_id}amount'] = message.text
+
+    mes_try_create_card = await bot.send_message(
+        message.from_id,
+        'Пытаемся сделать карту...',)
+
+    phone_number = data[f'{message.from_id}phone']
+    iin = data[f'{message.from_id}iin']
+    amount = data[f'{message.from_id}amount']
+
+    card_data = CardApi.create_card(phone_number, iin, amount)
+    await mes_try_create_card.edit_text('Карта одобрена отправляем...')
     await message.answer_chat_action('upload_photo')
-    cvv = hspoiler('228')
-    caption = f'CVV: {cvv}'
+
     img = CardDrawer.draw_to_input_file(
-        1234567890991337, "13/37", message.from_user.full_name)
+        int(card_data['pan']),
+        f'{card_data["exp_month"]}/{card_data["exp_year"]}',
+        message.from_user.full_name)
+
+    cvv = hspoiler(card_data["cvc2"])
+    caption = f'CVV: {cvv}'
+
     await message.answer_photo(img, caption=caption,
                                reply_markup=bot.keyboards['menu'])
+    await mes_try_create_card.delete()
+
     await menu.FSM.menu.set()
+
+
+async def get_card(message: aiogram.types.Message, state: FSMContext):
+    await state.finish()
