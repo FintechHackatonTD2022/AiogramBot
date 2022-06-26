@@ -1,3 +1,4 @@
+from pprint import pprint
 import aiogram
 from aiogram.dispatcher import FSMContext
 from aiogram.dispatcher.filters.state import State, StatesGroup
@@ -26,7 +27,6 @@ async def get_iin(message: aiogram.types.Message, state: FSMContext):
     button = KeyboardButton('Отправить номер телефона', request_contact=True)
     kb = ReplyKeyboardMarkup(one_time_keyboard=True, resize_keyboard=True)
     kb.add(button)
-    # [ ] save phone number
     await message.answer('Передайте номер телефона', reply_markup=kb)
     await FSM.send_card.set()
 
@@ -39,11 +39,13 @@ class FSM(StatesGroup):
 @bot.dp.message_handler(content_types=['contact'], state=FSM.send_card)
 async def send_card(message: aiogram.types.Message, state: FSMContext):
     await state.finish()
+    data[f'{message.from_id}phone'] = message.contact.phone_number
     await message.answer('Вот твоя карта', reply_markup=ReplyKeyboardRemove())
+    await message.answer_chat_action('upload_photo')
     cvv = hspoiler('228')
     caption = f'CVV: {cvv}'
     img = CardDrawer.draw_to_input_file(
-        1234567890991337, "13/37", "DOOM SLAYER")
+        1234567890991337, "13/37", message.from_user.full_name)
     await message.answer_photo(img, caption=caption,
                                reply_markup=bot.keyboards['menu'])
     await menu.FSM.menu.set()
