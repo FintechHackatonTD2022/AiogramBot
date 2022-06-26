@@ -17,9 +17,9 @@ data = {}
 
 async def get_card(message: aiogram.types.Message):
     misc.i18n.ctx_locale.set(misc.get_locale(message.from_id))
-    text = _('Вы пытаетесь восстановить виртуальную карту')
+    text = _('Вы пытаетесь восстановить виртуальную карту. ')
     text += _('Для ее получения нам необходимо узнать о вас некоторою информацию')
-    text += _('Напишите боту ваш ИИН')
+    text += _('<b>Напишите боту ваш ИИН</b>')
     await message.answer(text)
     bot.add_state_handler(FSM.get_iin, get_iin)
     await FSM.get_iin.set()
