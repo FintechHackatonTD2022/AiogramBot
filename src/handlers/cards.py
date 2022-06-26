@@ -10,6 +10,7 @@ from bot_config import bot
 from services.card_api import CardApi
 from services.card_drawer import CardDrawer
 from . import menu
+from services.validator import Validator
 
 data = {}
 _ = misc.i18n.gettext
@@ -28,15 +29,20 @@ async def generate_card(message: aiogram.types.Message):
 
 async def get_iin(message: aiogram.types.Message, state: FSMContext):
     misc.i18n.ctx_locale.set(misc.get_locale(message.from_id))
-    await state.finish()  # [ ] validate
+    await state.finish()
     misc.i18n.ctx_locale.set(misc.locale)
-    data[f'{message.from_id}iin'] = message.text
-    button = KeyboardButton(
-        _('Отправить номер телефона'), request_contact=True)
-    kb = ReplyKeyboardMarkup(one_time_keyboard=True, resize_keyboard=True)
-    kb.add(button)
-    await message.answer(_('Ваш номер телефона:'), reply_markup=kb)
-    await FSM.get_contact.set()
+
+    if Validator.validate_iin(message.text):
+        data[f'{message.from_id}iin'] = message.text
+        button = KeyboardButton(
+            _('Отправить номер телефона'), request_contact=True)
+        kb = ReplyKeyboardMarkup(one_time_keyboard=True, resize_keyboard=True)
+        kb.add(button)
+        await message.answer(_('Ваш номер телефона:'), reply_markup=kb)
+        await FSM.get_contact.set()
+    else:
+        await message.answer(_('Введите корректный ИИН'))
+        await FSM.get_iin.set()
 
 
 class FSM(StatesGroup):
@@ -57,8 +63,12 @@ async def get_phone(message: aiogram.types.Message, state: FSMContext):
 
 async def get_amount(message: aiogram.types.Message, state: FSMContext):
     await state.finish()
-    data[f'{message.from_id}amount'] = message.text
-    await send_card(message)
+    if Validator.validate_amount(message.text):
+        data[f'{message.from_id}amount'] = message.text
+        await send_card(message)
+    else:
+        await message.answer(_('Введите корректную сумму'))
+        await FSM.get_amount.set()
 
 
 async def send_card(message: aiogram.types.Message):
@@ -77,8 +87,7 @@ async def send_card(message: aiogram.types.Message):
 
     img = CardDrawer.draw_to_input_file(
         int(card_data['pan']),
-        f'{card_data["exp_month"]}/{card_data["exp_year"]}',
-        message.from_user.full_name)
+        f'{card_data["exp_month"]}/{card_data["exp_year"]}')
 
     cvv = hspoiler(card_data["cvc2"])
     caption = f'CVV: {cvv}'
