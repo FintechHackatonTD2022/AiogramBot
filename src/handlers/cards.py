@@ -1,6 +1,3 @@
-import misc
-from . import menu
-from pprint import pprint
 import aiogram
 from aiogram.dispatcher import FSMContext
 from aiogram.dispatcher.filters.state import State, StatesGroup
@@ -8,8 +5,11 @@ from aiogram.types import (KeyboardButton, ReplyKeyboardMarkup,
                            ReplyKeyboardRemove)
 from aiogram.utils.markdown import hspoiler
 
+import misc
 from bot_config import bot
-from services.draw_card.card_drawer import CardDrawer
+from services.card_api import CardApi
+from services.card_drawer import CardDrawer
+from . import menu
 
 data = {}
 _ = misc.i18n.gettext
@@ -32,7 +32,6 @@ async def get_iin(message: aiogram.types.Message, state: FSMContext):
         _('Отправить номер телефона'), request_contact=True)
     kb = ReplyKeyboardMarkup(one_time_keyboard=True, resize_keyboard=True)
     kb.add(button)
-    # [ ] save phone number
     await message.answer(_('Передайте номер телефона'), reply_markup=kb)
     await FSM.send_card.set()
 
