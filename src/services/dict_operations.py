@@ -1,6 +1,6 @@
 import base64
 from datetime import datetime, timedelta, timezone
-# import jwt
+import logging
 import rsa
 import ast
 
@@ -52,20 +52,20 @@ def decrypt_dict(encrypted_dictionary: bytes,
         rsa.decrypt(
             base64.b64decode(encrypted_dictionary),
             private_key
-            ).decode("utf-8")
-        )
+        ).decode("utf-8")
+    )
 
 
-# def encode_jws(enc_payload: bytes,
-#                private_key: bytes,
-#                algorithm='RS256') -> str:
-#     return jwt.encode({"encrypted": enc_payload.decode("utf-8")},
-#                       private_key,
-#                       algorithm)
-
-
-# def decode_jws(jws: str, public_key: bytes, algorithms='RS256') -> dict:
-#     return jwt.decode(jws, public_key, algorithms)
+def process_response(response: dict) -> dict | str:
+    if 'encrypted' not in response:
+        if response.get("code") != "0":
+            logging.error("Response Processor: Got internal error!")
+            return {"code": response.get("code")}
+        else:
+            logging.error("Response Processor: Encrypted data not found!")
+            return {"code": "-32"}
+    else:
+        return response.get("encrypted")
 
 
 def test(publickey_path: str, privatekey_path: str) -> None:
