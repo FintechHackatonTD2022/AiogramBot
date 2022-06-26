@@ -36,11 +36,11 @@ async def locales_menu(message: aiogram.types.Message, state: FSMContext):
     await state.finish()
     match message.text:
         case '🇷🇺':
-            await set_locale('ru')
+            set_locale('ru')
         case '🇰🇿':
-            await set_locale('kaz')
+            set_locale('kaz')
         case '🏴󠁧󠁢󠁥󠁮󠁧󠁿':
-            await set_locale('en')
+            set_locale('en')
 
 
 class FSM(StatesGroup):

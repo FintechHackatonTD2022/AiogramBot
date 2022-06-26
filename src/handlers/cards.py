@@ -10,9 +10,6 @@ from aiogram.utils.markdown import hspoiler
 
 from bot_config import bot
 from services.draw_card.card_drawer import CardDrawer
-<< << << < HEAD
-== == == =
->>>>>> > multilang-test
 
 data = {}
 _ = misc.i18n.gettext
